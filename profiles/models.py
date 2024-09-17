@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 
 
 class Profile(models.Model):
+    """Define Profile models"""
+
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     favorite_city = models.CharField(max_length=64, blank=True)
 
