@@ -1,3 +1,8 @@
+"""oc_lettings_site/app.py
+
+configuration for the 'oc_lettings_site' application
+"""
+
 from django.apps import AppConfig
 
 

@@ -1,3 +1,11 @@
+"""
+lettings/urls.py
+
+Contains the URL patterns for the 'lettings' app,
+mapping URL paths to their corresponding view functions.
+
+"""
+
 from django.urls import path
 from . import views
 

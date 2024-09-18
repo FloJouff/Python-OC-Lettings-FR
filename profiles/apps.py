@@ -1,3 +1,8 @@
+"""profiles/app.py
+
+configuration for the 'profiles' application
+"""
+
 from django.apps import AppConfig
 
 
