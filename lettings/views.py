@@ -7,6 +7,10 @@ contains the Django view's functions related to lettings models
 
 from django.shortcuts import render
 from .models import Letting
+import logging
+from sentry_sdk import set_tag, capture_exception
+
+logger = logging.getLogger(__name__)
 
 
 def index(request):
@@ -34,7 +38,14 @@ def letting(request, letting_id):
         HttpResponse: HTML page for letting page
 
     """
-    letting = Letting.objects.get(id=letting_id)
+    try:
+        letting = Letting.objects.get(id=letting_id)
+        logger.info("Operation successful")
+    except Exception as e:
+        logger.error(f"An error occured: {str(e)}")
+        set_tag("letting", f"User tried to access {letting_id}, unsuccessfully")
+        capture_exception(e)
+        return render(request, "404.html")
     context = {
         "title": letting.title,
         "address": letting.address,

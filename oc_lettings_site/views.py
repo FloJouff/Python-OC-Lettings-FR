@@ -8,7 +8,11 @@ Contains the Django view's functions related to oc_lettings_site app
 """
 
 from django.shortcuts import render
+import sentry_sdk
+import logging
+from sentry_sdk import set_tag
 
+logger = logging.getLogger(__name__)
 
 def index(request):
     """OC Lettings Home page
@@ -31,6 +35,9 @@ def error_404(request, exception):
     Returns:
         HttpResponse: HTML page for error 404 page
     """
+    logger.error("An error occured: Page not found")
+    set_tag("Home", "page not found")
+    sentry_sdk.capture_message("Page not found", level="Warning")
     return render(request, "404.html")
 
 
@@ -43,4 +50,7 @@ def error_500(request):
     Returns:
         HttpResponse: HTML page for error 500 page
     """
+    logger.error("Something went wrong with server")
+    set_tag("Home", "server error")
+    sentry_sdk.capture_message("Something went wrong with server", level="Warning")
     return render(request, "500.html")

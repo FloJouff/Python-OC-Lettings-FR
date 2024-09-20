@@ -7,6 +7,11 @@ contains the Django view's functions related to profiles models
 
 from django.shortcuts import render
 from .models import Profile
+import logging
+from sentry_sdk import set_tag, capture_exception
+
+
+logger = logging.getLogger(__name__)
 
 
 def index(request):
@@ -33,6 +38,13 @@ def profile(request, username):
     Return:
         HttpResponse: HTML page for user's profile page
     """
-    profile = Profile.objects.get(user__username=username)
+    try:
+        profile = Profile.objects.get(user__username=username)
+        logger.info("Loading successful")
+    except Exception as e:
+        logger.error(f"An error occured: {str(e)}")
+        set_tag("Profil", f"User tried to access {username} profile, unsuccessfully")
+        capture_exception(e)
+        return render(request, "404.html")
     context = {"profile": profile}
     return render(request, "profiles/profile.html", context)
