@@ -10,7 +10,6 @@ COPY . .
 ENV SECRET_KEY=temporary_key_for_collectstatic
 ENV DJANGO_SETTINGS_MODULE=oc_lettings_site.settings
 
-
 RUN python manage.py collectstatic --noinput
 
 EXPOSE 8000
