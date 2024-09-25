@@ -25,7 +25,7 @@ jobs:
       - run:
           name: Run tests with pytest
           command: |
-            . venv/bin/activate
+            . venv/scripts/activate
             pytest
   flake8:
     docker:
