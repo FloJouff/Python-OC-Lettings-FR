@@ -14,6 +14,7 @@ from sentry_sdk import set_tag
 
 logger = logging.getLogger(__name__)
 
+
 def index(request):
     """OC Lettings Home page
     Args:
