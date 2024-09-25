@@ -16,7 +16,7 @@ jobs:
           name: Install dependencies
           command: |
             python -m venv venv
-            . venv/scripts/activate
+            . venv/bin/activate
             pip install -r requirements.txt
       - save_cache:
           paths:
@@ -25,7 +25,7 @@ jobs:
       - run:
           name: Run tests with pytest
           command: |
-            . venv/scripts/activate
+            . venv/bin/activate
             pytest
   flake8:
     docker:
