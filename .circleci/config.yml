@@ -33,11 +33,11 @@ jobs:
     steps:
       - checkout
       - run:
-        name: Install Flake8
-        command: pip install flake8==3.7.0
+          name: Install Flake8
+          command: pip install flake8==3.7.0
       - run:
-        name: check linting with Flake8
-        command: flake8
+          name: check linting with Flake8
+          command: flake8
 
   build-and-push-docker:
     docker:
@@ -73,12 +73,10 @@ workflows:
       - build-and-push-docker:
           requires:
             - pytest
+            - flake8
           filters:
             branches:
               only: master
-          requires:
-            - flake8
-            - pytest
       - deploy-from-dockerhub-to-render:
           requires:
             - build-and-push
