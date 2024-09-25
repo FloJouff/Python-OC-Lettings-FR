@@ -1,32 +1,72 @@
-# This config was automatically generated from your source code
-# Stacks detected: deps:python:.,file:manage.py:.
 version: 2.1
+
 orbs:
-  python: circleci/python@2
+  docker: circleci/docker@2.1.1
+
 jobs:
-  test-python:
-    # Install dependencies and run tests
+  test:
     docker:
-      - image: cimg/python:3.8-node
+      - image: cimg/python:3.9
     steps:
       - checkout
-      - python/install-packages
+      - restore_cache:
+          keys:
+            - deps-{{ checksum "requirements.txt" }}
+      - run:
+          name: Install dependencies
+          command: |
+            python -m venv venv
+            . venv/bin/activate
+            pip install -r requirements.txt
+      - save_cache:
+          paths:
+            - ./venv
+          key: deps-{{ checksum "requirements.txt" }}
       - run:
           name: Run tests
-          command: python manage.py test
-  deploy:
-    # This is an example deploy job, not actually used by the workflow
+          command: |
+            . venv/bin/activate
+            pytest
+
+  build-and-push:
     docker:
       - image: cimg/base:stable
     steps:
-      # Replace this with steps to deploy to users
+      - checkout
+      - setup_remote_docker
+      - docker/check
+      - docker/build:
+          image: flojouff/oc-lettings
+          tag: ${CIRCLE_SHA1}
+      - docker/push:
+          image: flojouff/oc-lettings
+          tag: ${CIRCLE_SHA1}
+
+  deploy:
+    docker:
+      - image: cimg/base:stable
+    steps:
       - run:
-          name: deploy
-          command: '#e.g. ./deploy.sh'
+          name: Deploy to Render
+          command: |
+            curl -s "https://api.render.com/deploy/srv-${RENDER_SERVICE_ID}?key=${RENDER_API_KEY}" \
+              -H "Content-Type: application/json" \
+              -d '{"imageTag": "'${CIRCLE_SHA1}'"}'
+
 workflows:
-  build-and-test:
+  version: 2
+  test-build-deploy:
     jobs:
-      - test-python
-    # - deploy:
-    #     requires:
-    #       - test-python
+      - test
+      - build-and-push:
+          requires:
+            - test
+          filters:
+            branches:
+              only: main
+      - deploy:
+          requires:
+            - build-and-push
+          filters:
+            branches:
+              only: main
