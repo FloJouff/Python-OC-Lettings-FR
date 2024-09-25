@@ -77,9 +77,9 @@ workflows:
           filters:
             branches:
               only: master
-      - deploy-from-dockerhub-to-render:
+      - deploy:
           requires:
-            - build-and-push
+            - build-and-push-docker
           filters:
             branches:
               only: master
