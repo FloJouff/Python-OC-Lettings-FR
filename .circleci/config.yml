@@ -16,7 +16,7 @@ jobs:
           name: Install dependencies
           command: |
             python -m venv venv
-            . venv/bin/activate
+            . venv/scripts/activate
             pip install -r requirements.txt
       - save_cache:
           paths:
