@@ -43,10 +43,10 @@ jobs:
       - docker/check
       - docker/build:
           image: flojouff/oc-lettings
-          tag: ${CIRCLE_SHA1}
+          command: docker build -t flojouff/oc-lettings .
       - docker/push:
           image: flojouff/oc-lettings
-          tag: ${CIRCLE_SHA1}
+          command: docker push flojouff/oc-lettings
 
   deploy:
     docker:
