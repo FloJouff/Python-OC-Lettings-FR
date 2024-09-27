@@ -17,7 +17,7 @@ jobs:
             - deps-{{ checksum "requirements.txt" }}
       - run:
           name: Create and activate virtual environment
-            command: |
+          command: |
               python -m venv venv
               . venv/bin/activate
               python --version
