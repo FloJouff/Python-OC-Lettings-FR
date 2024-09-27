@@ -57,9 +57,9 @@ jobs:
       - run:
           name: Deploy to Render
           command: |
-            curl -X POST "https://api.render.com/deploy/srv-${RENDER_SERVICE_ID}?key=${RENDER_API_KEY}" \
+            curl -X POST ${HOOK_RENDER} \
               -H "Content-Type: application/json" \
-              -d '{"imageTag": "'${CIRCLE_SHA1}'"}'
+              -d '{"imageTag": "docker.io/${DOCKERHUB_USERNAME}/oc-lettings:latest", "clearCache": false}'
 
 workflows:
   version: 2
