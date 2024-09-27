@@ -47,7 +47,7 @@ jobs:
       - run:
           name: Push docker image
           command: |
-              echo ${DOCKER_PASSWORD} | docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}
+              echo ${DOCKER_PASSWORD} | docker login -u ${DOCKER_LOGIN} -p ${DOCKER_PASSWORD}
               docker push ${DOCKER_USERNAME}/my-app:latest 
 
   deploy:
