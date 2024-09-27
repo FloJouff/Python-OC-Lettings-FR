@@ -4,7 +4,7 @@ orbs:
   docker: circleci/docker@2.1.1
 
 jobs:
-  pytest:
+  test:
     docker:
       - image: cimg/python:3.12
     steps:
@@ -27,17 +27,11 @@ jobs:
           command: |
             . venv/bin/activate
             python -m pytest
-  flake8:
-    docker:
-      - image: cimg/python:3.12
-    steps:
-      - checkout
       - run:
-          name: Install Flake8
-          command: pip install flake8==3.7.0
-      - run:
-          name: check linting with Flake8
-          command: flake8
+          name: Run Flake8
+          command: |
+          . venv/bin/activate
+          flake8
 
   build-and-push-docker:
     docker:
@@ -47,10 +41,10 @@ jobs:
       - setup_remote_docker
       - docker/check
       - docker/build:
-          image: FloJouff/oc-lettings
+          image: flojouff/oc-lettings
           tag: ${CIRCLE_SHA1}
       - docker/push:
-          image: FloJouff/oc-lettings
+          image: flojouff/oc-lettings
           tag: ${CIRCLE_SHA1}
 
   deploy:
@@ -60,7 +54,7 @@ jobs:
       - run:
           name: Deploy to Render
           command: |
-            curl -s "https://api.render.com/deploy/srv-${RENDER_SERVICE_ID}?key=${RENDER_API_KEY}" \
+            curl -X POST "https://api.render.com/deploy/srv-${RENDER_SERVICE_ID}?key=${RENDER_API_KEY}" \
               -H "Content-Type: application/json" \
               -d '{"imageTag": "'${CIRCLE_SHA1}'"}'
 
@@ -68,12 +62,10 @@ workflows:
   version: 2
   test-build-deploy:
     jobs:
-      - pytest
-      - flake8
+      - test
       - build-and-push-docker:
           requires:
-            - pytest
-            - flake8
+            - test
           filters:
             branches:
               only: master

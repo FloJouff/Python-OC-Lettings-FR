@@ -126,6 +126,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 
+os.makedirs(STATIC_ROOT, exist_ok=True)
+
 STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
 
 WHITENOISE_MANIFEST_STRICT = False
@@ -148,7 +150,7 @@ LOGGING = {
     "disable_existing_loggers": False,
     "formatters": {
         "verbose": {
-            "format": "{levelname} {assctime} {module} {message}",
+            "format": "{levelname} {asctime} {module} {message}",
             "style": "{",
         },
         "simple": {
