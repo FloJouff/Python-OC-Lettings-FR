@@ -43,12 +43,12 @@ jobs:
       - docker/check
       - run:
           name: Build docker image
-          command: docker build -t ${DOCKER_USERNAME}/my-app:latest .
+          command: docker build -t ${DOCKER_USERNAME}/oc-lettings:latest .
       - run:
           name: Push docker image
           command: |
               echo ${DOCKER_PASSWORD} | docker login -u ${DOCKER_LOGIN} -p ${DOCKER_PASSWORD}
-              docker push ${DOCKER_USERNAME}/my-app:latest 
+              docker push ${DOCKER_USERNAME}/oc-lettings:latest 
 
   deploy:
     docker:
