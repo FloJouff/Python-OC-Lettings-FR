@@ -43,10 +43,14 @@ jobs:
       - docker/check
       - docker/build:
           image: flojouff/oc-lettings
-          command: docker build -t flojouff/oc-lettings .
+          - run:
+              name: Build docker image
+              command: docker build -t flojouff/oc-lettings .
       - docker/push:
           image: flojouff/oc-lettings
-          command: docker push flojouff/oc-lettings
+          - run:
+              name: Push docker image
+              command: docker push flojouff/oc-lettings
 
   deploy:
     docker:
