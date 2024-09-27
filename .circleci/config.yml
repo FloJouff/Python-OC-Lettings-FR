@@ -9,13 +9,21 @@ jobs:
       - image: cimg/python:3.12
     steps:
       - checkout
+      - run:
+          name: Check Python version
+          command: python --version
       - restore_cache:
           keys:
             - deps-{{ checksum "requirements.txt" }}
       - run:
+          name: Create and activate virtual environment
+            command: |
+              python -m venv venv
+              . venv/bin/activate
+              python --version
+      - run:
           name: Install dependencies
           command: |
-            python -m venv venv
             . venv/bin/activate
             pip install -r requirements.txt
       - save_cache:
