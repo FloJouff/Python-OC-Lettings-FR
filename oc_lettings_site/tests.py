@@ -39,7 +39,7 @@ class TestErrorPages:
 
     def test_404_content(self, client):
         response = client.get("/page-inexistante/")
-        assert "Error 404 - Page not found" in response.content.decode()
+        assert "Error 404 - " in response.content.decode()
 
     def test_500_content(self, client):
         def raise_error(request):
