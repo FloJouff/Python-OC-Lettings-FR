@@ -1,4 +1,5 @@
-"""profiles/app.py
+"""
+profiles/app.py
 
 configuration for the 'profiles' application
 """

@@ -19,7 +19,8 @@ logger = logging.getLogger(__name__)
 
 
 def index(request):
-    """Index page for lettings
+    """
+    Index page for lettings
 
     Args:
         request (HttpRequest): the HttpRequest Object
@@ -46,7 +47,8 @@ def index(request):
 
 
 def letting(request, letting_id):
-    """Page for letting whose id is letting_id
+    """
+    Page for letting whose id is letting_id
 
     Args:
         request (HttpRequest): the HttpRequest Object

@@ -9,7 +9,8 @@ from django.db import models
 
 
 class Address(models.Model):
-    """Define Address Models
+    """
+    Define Address Models
 
     Attributes:
         number(int): Streeet number
@@ -35,7 +36,8 @@ class Address(models.Model):
 
 
 class Letting(models.Model):
-    """Define Letting Model
+    """
+    Define Letting Model
 
     Attributes:
         title(str): Letting's title

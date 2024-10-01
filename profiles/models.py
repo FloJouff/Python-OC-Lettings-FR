@@ -1,4 +1,5 @@
-"""profiles/app.py
+"""
+profiles/app.py
 
 This module contains models for the 'profiles' app.
 Defines the structures for Profile models in database
@@ -9,12 +10,12 @@ from django.contrib.auth.models import User
 
 
 class Profile(models.Model):
-    """Define Profile models
+    """
+    Define Profile models
 
     Attributes
         user(User): ForeignKey related to User model
         favorite_city(str): User's favorite city
-
 
     """
 

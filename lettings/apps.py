@@ -1,4 +1,5 @@
-"""lettings/app.py
+"""
+lettings/app.py
 
 configuration for the 'lettings' application
 """
