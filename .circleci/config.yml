@@ -3,30 +3,35 @@ version: 2.1
 orbs:
   docker: circleci/docker@2.1.1
 
+commands:
+  setup_environnement:
+    steps:
+        - checkout
+        - run:
+            name: Check Python version and environment
+            command: |
+              python --version
+              pip --version
+              echo $PATH
+              which python
+        - restore_cache:
+            keys:
+              - deps-{{ checksum "requirements.txt" }}
+        - run:
+            name: Install dependencies
+            command: |
+              pip install -r requirements.txt
+        - save_cache:
+            paths:
+              - ~/.cache/pip
+            key: deps-{{ checksum "requirements.txt" }}
+
 jobs:
   pytest:
     docker:
       - image: cimg/python:3.12
     steps:
-      - checkout
-      - run:
-          name: Check Python version and environment
-          command: |
-            python --version
-            pip --version
-            echo $PATH
-            which python
-      - restore_cache:
-          keys:
-            - deps-{{ checksum "requirements.txt" }}
-      - run:
-          name: Install dependencies
-          command: |
-            pip install -r requirements.txt
-      - save_cache:
-          paths:
-            - ~/.cache/pip
-          key: deps-{{ checksum "requirements.txt" }}
+      - setup_environnement
       - run:
           name: Run tests with pytest
           command: pytest
@@ -34,25 +39,7 @@ jobs:
     docker:
       - image: cimg/python:3.12
     steps:
-      - checkout
-      - run:
-          name: Check Python version and environment
-          command: |
-            python --version
-            pip --version
-            echo $PATH
-            which python
-      - restore_cache:
-          keys:
-            - deps-{{ checksum "requirements.txt" }}
-      - run:
-          name: Install dependencies
-          command: |
-            pip install -r requirements.txt
-      - save_cache:
-          paths:
-            - ~/.cache/pip
-          key: deps-{{ checksum "requirements.txt" }}
+      - setup_environnement
       - run:
           name: Run Flake8
           command: flake8
