@@ -48,7 +48,8 @@ def error_404(request, exception):
     logger.error("An error occured: Page not found")
     set_tag("Home", "page not found")
     sentry_sdk.capture_message("Page not found", level="Warning")
-    return render(request, "404.html")
+    error_message = str(exception)
+    return render(request, "404.html", {"error_message": error_message})
 
 
 def error_500(request):

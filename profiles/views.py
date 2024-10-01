@@ -8,6 +8,7 @@ contains the Django view's functions related to profiles models
 from django.shortcuts import render
 from .models import Profile
 import logging
+from django.http import Http404
 from sentry_sdk import set_tag, capture_exception
 
 
@@ -55,6 +56,6 @@ def profile(request, username):
         logger.error(f"An error occured: {str(e)}")
         set_tag("Profil", f"User tried to access {username} profile, unsuccessfully")
         capture_exception(e)
-        return render(request, "404.html")
+        raise Http404("Profile not found")
     context = {"profile": profile}
     return render(request, "profiles/profile.html", context)
