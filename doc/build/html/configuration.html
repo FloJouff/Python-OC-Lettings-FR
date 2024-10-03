@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Configuration Guide &#8212; OC-Lettings  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=f63d8bfa" />
+    <link rel="stylesheet" type="text/css" href="_static/haiku.css?v=dfa0e015" />
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Use" href="application.html" />
+    <link rel="prev" title="Installation" href="install.html" /> 
+  </head><body>
+      <div class="header" role="banner"><h1 class="heading"><a href="index.html">
+          <span>OC-Lettings  documentation</span></a></h1>
+        <h2 class="heading"><span>Configuration Guide</span></h2>
+      </div>
+      <div class="topnav" role="navigation" aria-label="Top">
+      
+        <p>
+        «&#160;&#160;<a href="install.html">Installation</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="application.html">Use</a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content" role="main">
+        
+        
+  <section id="configuration-guide">
+<h1>Configuration Guide<a class="headerlink" href="#configuration-guide" title="Link to this heading">¶</a></h1>
+<section id="environment-variables">
+<h2>1. Environment variables<a class="headerlink" href="#environment-variables" title="Link to this heading">¶</a></h2>
+<p>1.1. List of required variables</p>
+<p>For local use, simply create an <strong>.env</strong> file at the root of the project, with the following variables:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>SECRET_KEY</strong> : Django secret key</p></li>
+<li><p><strong>SENTRY_DSN</strong> : Sentry project URL</p></li>
+<li><p><strong>ALLOWED_HOSTS</strong> : enter allowed host</p></li>
+<li><p><strong>DEBUG</strong> : select True or False</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="database-configuration">
+<h2>2. Database configuration<a class="headerlink" href="#database-configuration" title="Link to this heading">¶</a></h2>
+<p>2.1. SQLite</p>
+<p>For this project, the database is in the GitHub repository</p>
+</section>
+<section id="configuring-external-services">
+<h2>3. Configuring external services<a class="headerlink" href="#configuring-external-services" title="Link to this heading">¶</a></h2>
+<p>3.1 . Docker Hub</p>
+<p>Check out the <a class="reference internal" href="project_on_docker.html"><span class="doc">Docker</span></a> section for further information</p>
+<p>3.2. Render</p>
+<p>This project is deployed from Render.
+A render account is required.
+<cite>Render web site &lt;https://render.com/&gt;</cite></p>
+<p>3.3. CircleCI</p>
+<p>Check out the <a class="reference internal" href="project_cicd.html"><span class="doc">Deployment</span></a> section for further information</p>
+<p>3.4 Sentry</p>
+<p>Check out the <a class="reference internal" href="surveillance.html"><span class="doc">Surveillance</span></a> section for further information</p>
+</section>
+</section>
+
+
+      </div>
+      <div class="bottomnav" role="navigation" aria-label="Bottom">
+      
+        <p>
+        «&#160;&#160;<a href="install.html">Installation</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="application.html">Use</a>&#160;&#160;»
+        </p>
+
+      </div>
+
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2024, Florian Jouffroy.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.0.2.
+    </div>
+  </body>
+</html>

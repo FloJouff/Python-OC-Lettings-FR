@@ -1,7 +1,10 @@
-===========
 Data models
 ===========
 
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+   
 1. Letting and Adress models
 ----------------------------
 
@@ -11,7 +14,7 @@ Data models
    :show-inheritance:
 
 
-2. Profile Modele 
+2. Profile Models 
 -----------------
 
 .. automodule:: profiles.models

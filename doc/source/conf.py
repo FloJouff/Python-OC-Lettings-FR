@@ -1,7 +1,10 @@
 import os
 import sys
+import django
 
-sys.path.insert(0, os.path.abspath('..'))
+sys.path.insert(0, os.path.abspath('../..'))
+os.environ['DJANGO_SETTINGS_MODULE'] = 'oc_lettings_site.settings'
+django.setup()
 
 # Configuration file for the Sphinx documentation builder.
 #
@@ -30,5 +33,5 @@ exclude_patterns = []
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-html_theme = 'alabaster'
+html_theme = 'haiku'
 html_static_path = ['_static']

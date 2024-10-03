@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>oc_lettings_site.views &#8212; OC-Lettings  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=f63d8bfa" />
+    <link rel="stylesheet" type="text/css" href="../../_static/haiku.css?v=dfa0e015" />
+    <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head><body>
+      <div class="header" role="banner"><h1 class="heading"><a href="../../index.html">
+          <span>OC-Lettings  documentation</span></a></h1>
+        <h2 class="heading"><span>oc_lettings_site.views</span></h2>
+      </div>
+      <div class="topnav" role="navigation" aria-label="Top">
+      
+        <p>
+        <a class="uplink" href="../../index.html">Contents</a>
+        </p>
+
+      </div>
+      <div class="content" role="main">
+        
+        
+  <h1>Source code for oc_lettings_site.views</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">oc_lettings_site/views.py</span>
+
+<span class="sd">Contains the Django view&#39;s functions related to oc_lettings_site app</span>
+<span class="sd">(Home page and 404 and 500 error pages)</span>
+
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span>
+<span class="kn">import</span> <span class="nn">sentry_sdk</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">sentry_sdk</span> <span class="kn">import</span> <span class="n">set_tag</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="c1"># Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque molestie quam lobortis leo</span>
+<span class="c1"># consectetur ullamcorper non id est. Praesent dictum, nulla eget feugiat sagittis,</span>
+<span class="c1"># sem mi convallis eros, vitae dapibus nisi lorem dapibus sem.</span>
+<span class="c1"># Maecenas pharetra purus ipsum, eget consequat ipsum lobortis quis.</span>
+<span class="c1"># Phasellus eleifend ex auctor venenatis tempus.</span>
+<span class="c1"># Aliquam vitae erat ac orci placerat luctus. Nullam elementum urna nisi,</span>
+<span class="c1"># pellentesque iaculis enim cursus in. Praesent volutpat porttitor magna,</span>
+<span class="c1"># non finibus neque cursus id.</span>
+
+
+<div class="viewcode-block" id="index">
+<a class="viewcode-back" href="../../views.html#oc_lettings_site.views.index">[docs]</a>
+<span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;OC Lettings Home page</span>
+<span class="sd">    Args:</span>
+<span class="sd">        request (HttpRequest): the HttpRequest Object</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        HttpResponse: HTML page for Home page</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;index.html&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="error_404">
+<a class="viewcode-back" href="../../views.html#oc_lettings_site.views.error_404">[docs]</a>
+<span class="k">def</span> <span class="nf">error_404</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">exception</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Display custom page in case of error 404</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        request (HttpRequest): the HttpRequest Object</span>
+<span class="sd">        exception (exception): Raise an exception in case of error 404</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        HttpResponse: HTML page for error 404 page</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;An error occured: Page not found&quot;</span><span class="p">)</span>
+    <span class="n">set_tag</span><span class="p">(</span><span class="s2">&quot;Home&quot;</span><span class="p">,</span> <span class="s2">&quot;page not found&quot;</span><span class="p">)</span>
+    <span class="n">sentry_sdk</span><span class="o">.</span><span class="n">capture_message</span><span class="p">(</span><span class="s2">&quot;Page not found&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="s2">&quot;Warning&quot;</span><span class="p">)</span>
+    <span class="n">error_message</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">exception</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;404.html&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;error_message&quot;</span><span class="p">:</span> <span class="n">error_message</span><span class="p">})</span></div>
+
+
+
+<div class="viewcode-block" id="error_500">
+<a class="viewcode-back" href="../../views.html#oc_lettings_site.views.error_500">[docs]</a>
+<span class="k">def</span> <span class="nf">error_500</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Display custom page in case of error 500</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        request (HttpRequest): the HttpRequest Object</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        HttpResponse: HTML page for error 500 page</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Something went wrong with server&quot;</span><span class="p">)</span>
+    <span class="n">set_tag</span><span class="p">(</span><span class="s2">&quot;Home&quot;</span><span class="p">,</span> <span class="s2">&quot;server error&quot;</span><span class="p">)</span>
+    <span class="n">sentry_sdk</span><span class="o">.</span><span class="n">capture_message</span><span class="p">(</span><span class="s2">&quot;Something went wrong with server&quot;</span><span class="p">,</span> <span class="n">level</span><span class="o">=</span><span class="s2">&quot;Warning&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;500.html&quot;</span><span class="p">)</span></div>
+
+</pre></div>
+
+      </div>
+      <div class="bottomnav" role="navigation" aria-label="Bottom">
+      
+        <p>
+        <a class="uplink" href="../../index.html">Contents</a>
+        </p>
+
+      </div>
+
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2024, Florian Jouffroy.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.0.2.
+    </div>
+  </body>
+</html>

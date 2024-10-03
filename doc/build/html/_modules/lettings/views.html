@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>lettings.views &#8212; OC-Lettings  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=f63d8bfa" />
+    <link rel="stylesheet" type="text/css" href="../../_static/haiku.css?v=dfa0e015" />
+    <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+  </head><body>
+      <div class="header" role="banner"><h1 class="heading"><a href="../../index.html">
+          <span>OC-Lettings  documentation</span></a></h1>
+        <h2 class="heading"><span>lettings.views</span></h2>
+      </div>
+      <div class="topnav" role="navigation" aria-label="Top">
+      
+        <p>
+        <a class="uplink" href="../../index.html">Contents</a>
+        </p>
+
+      </div>
+      <div class="content" role="main">
+        
+        
+  <h1>Source code for lettings.views</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">lettings/views.py</span>
+
+<span class="sd">contains the Django view&#39;s functions related to lettings models</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span>
+<span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">Letting</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">django.http</span> <span class="kn">import</span> <span class="n">Http404</span>
+<span class="kn">from</span> <span class="nn">sentry_sdk</span> <span class="kn">import</span> <span class="n">set_tag</span><span class="p">,</span> <span class="n">capture_exception</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="c1"># Aenean leo magna, vestibulum et tincidunt fermentum, consectetur quis velit.</span>
+<span class="c1"># Sed non placerat massa. Integer est nunc, pulvinar a tempor et, bibendum id arcu.</span>
+<span class="c1"># Vestibulum ante ipsum primis in faucibus orci luctus et ultrices</span>
+<span class="c1"># posuere cubilia curae; Cras eget scelerisque</span>
+
+
+<div class="viewcode-block" id="index">
+<a class="viewcode-back" href="../../views.html#lettings.views.index">[docs]</a>
+<span class="k">def</span> <span class="nf">index</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Index page for lettings</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        request (HttpRequest): the HttpRequest Object</span>
+
+<span class="sd">    Return:</span>
+<span class="sd">        HttpResponse: HTML page for lettings index page</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">lettings_list</span> <span class="o">=</span> <span class="n">Letting</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
+    <span class="n">context</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;lettings_list&quot;</span><span class="p">:</span> <span class="n">lettings_list</span><span class="p">}</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;lettings/index.html&quot;</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span></div>
+
+
+
+<span class="c1"># Cras ultricies dignissim purus, vitae hendrerit ex varius non.</span>
+<span class="c1"># In accumsan porta nisl id eleifend. Praesent dignissim, odio eu consequat pretium,</span>
+<span class="c1"># purus urna vulputate arcu, vitae efficitur</span>
+<span class="c1">#  lacus justo nec purus. Aenean finibus faucibus lectus at porta. Maecenas auctor,</span>
+<span class="c1"># est ut luctus congue, dui enim mattis enim, ac condimentum velit libero in magna.</span>
+<span class="c1"># Suspendisse potenti. In tempus a nisi sed laoreet.</span>
+<span class="c1"># Suspendisse porta dui eget sem accumsan interdum. Ut quis urna pellentesque justo</span>
+<span class="c1"># mattis ullamcorper ac non tellus. In tristique mauris eu velit fermentum,</span>
+<span class="c1"># tempus pharetra est luctus. Vivamus consequat aliquam libero, eget bibendum lorem.</span>
+<span class="c1"># Sed non dolor risus. Mauris condimentum auctor elementum. Donec quis nisi ligula.</span>
+<span class="c1"># Integer vehicula tincidunt enim, ac lacinia augue pulvinar sit</span>
+
+
+<div class="viewcode-block" id="letting">
+<a class="viewcode-back" href="../../views.html#lettings.views.letting">[docs]</a>
+<span class="k">def</span> <span class="nf">letting</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">letting_id</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Page for letting whose id is letting_id</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        request (HttpRequest): the HttpRequest Object</span>
+<span class="sd">        letting_id (int): letting&#39;s id</span>
+
+<span class="sd">    Return:</span>
+<span class="sd">        HttpResponse: HTML page for letting page</span>
+<span class="sd">        404.html page in case of unknown id</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">letting</span> <span class="o">=</span> <span class="n">Letting</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">letting_id</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Operation successful&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;An error occured: </span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">set_tag</span><span class="p">(</span><span class="s2">&quot;letting&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;User tried to access </span><span class="si">{</span><span class="n">letting_id</span><span class="si">}</span><span class="s2">, unsuccessfully&quot;</span><span class="p">)</span>
+        <span class="n">capture_exception</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">Http404</span><span class="p">(</span><span class="s2">&quot;Letting not found&quot;</span><span class="p">)</span>
+    <span class="n">context</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">letting</span><span class="o">.</span><span class="n">title</span><span class="p">,</span>
+        <span class="s2">&quot;address&quot;</span><span class="p">:</span> <span class="n">letting</span><span class="o">.</span><span class="n">address</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s2">&quot;lettings/letting.html&quot;</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span></div>
+
+</pre></div>
+
+      </div>
+      <div class="bottomnav" role="navigation" aria-label="Bottom">
+      
+        <p>
+        <a class="uplink" href="../../index.html">Contents</a>
+        </p>
+
+      </div>
+
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2024, Florian Jouffroy.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.0.2.
+    </div>
+  </body>
+</html>

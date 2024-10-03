@@ -1,7 +1,9 @@
-=====
 Views
 =====
 
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
 
 1. Lettings application views
 ------------------------------

@@ -15,16 +15,15 @@ documentation for details.
    :maxdepth: 2
    :caption: Contents:
    
-   source/Contents/intro.rst
-   source/Contents/install.rst
-   source/contents/configuration.rst
-   source/contents/application.rst
-   source/contents/data_models.rst
-   source/contents/views.rst
-   source/contents/running_tests.rst
-   source/Contents/Project_cicd.rst
-   source/Contents/Project_on_docker.rst
-   source/Contents/surveillance.rst
+   intro.rst
+   install.rst
+   configuration.rst
+   application.rst
+   data_models.rst
+   views.rst
+   project_cicd.rst
+   project_on_docker.rst
+   surveillance.rst
    
 Indices and tables
 ==================
