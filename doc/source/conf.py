@@ -1,10 +1,18 @@
 import os
 import sys
-import django
+
+from unittest.mock import MagicMock
 
 sys.path.insert(0, os.path.abspath('../..'))
+class Mock(MagicMock):
+    @classmethod
+    def __getattr__(cls, name):
+        return MagicMock()
+
+MOCK_MODULES = ['django', 'django.conf']
+sys.modules.update((mod_name, Mock()) for mod_name in MOCK_MODULES)
+
 os.environ['DJANGO_SETTINGS_MODULE'] = 'oc_lettings_site.settings'
-django.setup()
 
 # Configuration file for the Sphinx documentation builder.
 #
@@ -28,7 +36,7 @@ extensions = [
 
 templates_path = ['_templates']
 exclude_patterns = []
-
+autodoc_mock_imports = ["django", "oc_lettings_site"]
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
