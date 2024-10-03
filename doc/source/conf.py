@@ -12,7 +12,9 @@ class Mock(MagicMock):
         return MagicMock()
 
 
-MOCK_MODULES = ['django', 'django.conf', 'django.db', 'django.db.models', 'django.contrib', 'django.contrib.auth', 'django.contrib.auth.models']
+MOCK_MODULES = ['django', 'django.conf', 'django.db', 'django.db.models',
+                'django.contrib', 'django.contrib.auth',
+                'django.contrib.auth.models']
 sys.modules.update((mod_name, Mock()) for mod_name in MOCK_MODULES)
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'oc_lettings_site.settings'
