@@ -109,4 +109,4 @@ You can edit a html report:
 - **[CircleCI Pipeline](https://app.circleci.com/pipelines/circleci/F6BzmJXEFxjQt77WmLxhbF/AajyXrjczUGjJTfMopx3Le)**
 - **[Available docker image](https://hub.docker.com/r/flojouff/oc-lettings)**
 - **[Application deployed on Render](https://dashboard.render.com/web/srv-crpc6m68ii6s73cfjbj0/)**
-- **[Read the Docs]()**
+- **[Read the Docs](https://fj-oc-lettings.readthedocs.io/en/latest/index.html)**
