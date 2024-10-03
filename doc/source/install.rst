@@ -1,4 +1,3 @@
-============
 Installation
 ============
 
@@ -25,29 +24,36 @@ Finally, create an account on `DockerHub <https://hub.docker.com/>`
 ------------------------
 
 .. code-block:: console
- `cd /path/to/put/project/in`
- `git clone https://github.com/FloJouff/Python-OC-Lettings-FR.git`
+
+    cd /path/to/put/project/in
+    git clone https://github.com/FloJouff/Python-OC-Lettings-FR.git
 
 3. Create virtual environnement
 -------------------------------
+
 .. code-block:: console
+
     `cd /path/to/Python-OC-Lettings-FR`
     `python -m venv venv`
 
 - Activate environnement:
     macOS / Linux
+
     .. code-block:: console
-       `source venv/bin/activate`
+        source venv/bin/activate
+
     Windows
+
     .. code-block:: console
-       `venv\scripts\activate`
+       venv\scripts\activate
 
 - To deactivate the environment, `deactivate`
 
 4. Install  dependencies
 ------------------------
 .. code-block:: console
-    `pip install --requirement requirements.txt`
+
+    (.env)$ pip install --requirement requirements.txt
 
 5. Initial setup
 ----------------

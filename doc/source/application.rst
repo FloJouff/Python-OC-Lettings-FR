@@ -6,7 +6,7 @@ Use
 -----------------------------------
 
 .. code-block:: console
- (.env)$ python manage.py runserver`
+    (.env)$ python manage.py runserver
 
 - Go to `http://localhost:8000`in your browser for local acces.
 
