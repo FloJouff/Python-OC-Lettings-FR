@@ -48,6 +48,7 @@ def profile(request, username):
 
     Return:
         HttpResponse: HTML page for user's profile page
+        404.html page in case of unknown id
     """
     try:
         profile = Profile.objects.get(user__username=username)

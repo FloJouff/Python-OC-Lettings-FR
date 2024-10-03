@@ -57,6 +57,7 @@ def letting(request, letting_id):
 
     Return:
         HttpResponse: HTML page for letting page
+        404.html page in case of unknown id
 
     """
     try:
