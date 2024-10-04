@@ -9,6 +9,7 @@ sys.path.insert(0, os.path.abspath('../..'))
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "oc_lettings_site.settings")
 
 django.setup()
+# autodoc_mock_imports = ["lettings", "profiles", "oc_lettings_site"]
 
 # Configuration file for the Sphinx documentation builder.
 #

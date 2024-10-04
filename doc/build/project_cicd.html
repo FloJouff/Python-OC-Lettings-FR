@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Deployment &#8212; OC-Lettings  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=f63d8bfa" />
+    <link rel="stylesheet" type="text/css" href="_static/haiku.css?v=dfa0e015" />
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Docker" href="project_on_docker.html" />
+    <link rel="prev" title="Views" href="views.html" /> 
+  </head><body>
+      <div class="header" role="banner"><h1 class="heading"><a href="index.html">
+          <span>OC-Lettings  documentation</span></a></h1>
+        <h2 class="heading"><span>Deployment</span></h2>
+      </div>
+      <div class="topnav" role="navigation" aria-label="Top">
+      
+        <p>
+        «&#160;&#160;<a href="views.html">Views</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="project_on_docker.html">Docker</a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content" role="main">
+        
+        
+  <section id="deployment">
+<h1>Deployment<a class="headerlink" href="#deployment" title="Link to this heading">¶</a></h1>
+<section id="circleci-configuration">
+<h2>1. CircleCI configuration<a class="headerlink" href="#circleci-configuration" title="Link to this heading">¶</a></h2>
+<p>2.1. .circleci/config.yml configuration file.</p>
+<p>This file was downloaded with the github repository.</p>
+<p>2.2. CircleCI environnment variables:</p>
+<p>You must specify the variables linked to Docker Hub:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>DOCKER_LOGIN</strong>: Your connexion email to your dockerHub account</p></li>
+<li><p><strong>DOCKER_PASSWORD</strong>: Docker Hub password</p></li>
+<li><p><strong>DOCKER_USERNAME</strong>: Docker Hub username</p></li>
+</ul>
+</div></blockquote>
+<p>The variables linked to Render use must be set in the CircleCI environment variables.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>HOOK_RENDER</strong>: go to settings - Deploy hook</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="deployment-on-render">
+<h2>2. Deployment on Render<a class="headerlink" href="#deployment-on-render" title="Link to this heading">¶</a></h2>
+<p>2.1. Configuring the service on Render</p>
+<p>This project is deployed from Render.
+A render account is required.
+<cite>Render web site &lt;https://render.com/&gt;</cite></p>
+<dl class="simple">
+<dt>In the <strong>environment</strong> section of the project, enter the environment variables present in the <strong>.env</strong> file:</dt><dd><ul class="simple">
+<li><p><strong>SECRET_KEY</strong> : Django secret key</p></li>
+<li><p><strong>SENTRY_DSN</strong> : Sentry project URL</p></li>
+<li><p><strong>ALLOWED_HOSTS</strong> : enter allowed host</p></li>
+<li><p><strong>DEBUG</strong> : select True or False</p></li>
+</ul>
+</dd>
+</dl>
+<p>2.2. Automatic deployment via CircleCI</p>
+<p>Each time you commit to the main/master branch of the project on GitHub, the deployment will take place automatically from Render after the docker image has been built and the various pre-deployment tests have been run on CircleCI.</p>
+</section>
+<section id="post-deployment-verification">
+<h2>3. Post-deployment verification<a class="headerlink" href="#post-deployment-verification" title="Link to this heading">¶</a></h2>
+<p>To check that deployment is proceeding correctly, you can make a small change to the project index page and ensure that this change is visible at the address specified by docker (for example: <cite>&lt;https://fj-oc-lettings.onrender.com&gt;</cite> ).</p>
+</section>
+</section>
+
+
+      </div>
+      <div class="bottomnav" role="navigation" aria-label="Bottom">
+      
+        <p>
+        «&#160;&#160;<a href="views.html">Views</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="project_on_docker.html">Docker</a>&#160;&#160;»
+        </p>
+
+      </div>
+
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2024, Florian Jouffroy.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.0.2.
+    </div>
+  </body>
+</html>
