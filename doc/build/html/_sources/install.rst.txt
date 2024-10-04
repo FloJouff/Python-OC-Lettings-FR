@@ -8,7 +8,7 @@ Installation
 
 You must have Python installed on your computer.
 For this project, version 3.12 was used.
-To download latest version, go to `Python web site <https://www.python.org/> `
+To download latest version, go to `Python web site <https://www.python.org/>`
 
 1.2. Git
 
@@ -40,12 +40,14 @@ Finally, create an account on `DockerHub <https://hub.docker.com/>`
     macOS / Linux
 
     .. code-block:: console
-        source venv/bin/activate
+
+        $ source venv/bin/activate
 
     Windows
 
     .. code-block:: console
-       venv\scripts\activate
+
+        $ venv\scripts\activate
 
 - To deactivate the environment, `deactivate`
 

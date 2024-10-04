@@ -14,8 +14,11 @@ class Mock(MagicMock):
 
 MOCK_MODULES = ['django', 'django.conf', 'django.db', 'django.db.models',
                 'django.contrib', 'django.contrib.auth',
-                'django.contrib.auth.models']
-sys.modules.update((mod_name, Mock()) for mod_name in MOCK_MODULES)
+                'django.contrib.auth.models', 'django.shortcuts', 'django.http', 'sentry_sdk']
+
+
+for mod_name in MOCK_MODULES:
+    sys.modules[mod_name] = MagicMock()
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'oc_lettings_site.settings'
 
@@ -37,11 +40,20 @@ author = 'Florian Jouffroy'
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.napoleon',
-    'sphinx.ext.viewcode']
+    'sphinx.ext.viewcode',
+    'sphinx.ext.intersphinx',
+    ]
+
+intersphinx_mapping = {
+    'python': ('https://docs.python.org/3', None),
+    'django': ('https://docs.djangoproject.com/en/stable/',
+               'https://docs.djangoproject.com/en/stable/_objects/'),
+}
 
 templates_path = ['_templates']
 exclude_patterns = []
-autodoc_mock_imports = ["django", "oc_lettings_site"]
+autodoc_mock_imports = ["django", "oc_lettings_site", "lettings", "profiles",
+                        "django.shortcuts", "django.core.exceptions"]
 
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output

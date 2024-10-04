@@ -12,6 +12,7 @@ Data models
    :members:
    :undoc-members:
    :show-inheritance:
+   :imported-members:
 
 
 2. Profile Models 
@@ -21,3 +22,4 @@ Data models
    :members:
    :undoc-members:
    :show-inheritance:
+   :imported-members:

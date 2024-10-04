@@ -2,8 +2,8 @@ Deployment
 ==========
 
 
-1. Configuration de CircleCI
-----------------------------
+1. CircleCI configuration
+--------------------------
 
 2.1. .circleci/config.yml configuration file.
 

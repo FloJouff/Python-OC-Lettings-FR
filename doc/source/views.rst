@@ -12,6 +12,7 @@ Views
    :members:
    :undoc-members:
    :show-inheritance:
+   :imported-members:
 
 
 2. Profiles application views
@@ -21,6 +22,7 @@ Views
    :members:
    :undoc-members:
    :show-inheritance:
+   :imported-members:
 
 
 3. General views
@@ -30,3 +32,4 @@ Views
    :members:
    :undoc-members:
    :show-inheritance:
+   :imported-members:
