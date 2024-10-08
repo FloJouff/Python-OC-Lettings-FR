@@ -122,10 +122,10 @@ A render account is required.
 Render web site: <https://render.com/>
 
 In the **environment** section of the project, enter the environment variables present in the **.env** file:
-    - **SECRET_KEY** : Django secret key
-    - **SENTRY_DSN** : Sentry project URL
-    - **ALLOWED_HOSTS** : enter allowed host 
-    - **DEBUG** : select True or False
+-  **SECRET_KEY** : Django secret key
+- **SENTRY_DSN** : Sentry project URL
+- **ALLOWED_HOSTS** : enter allowed host 
+- **DEBUG** : select True or False
 
 ## Setting up a surveillance service
 
