@@ -8,17 +8,17 @@ Installation
 
 You must have Python installed on your computer.
 For this project, version 3.12 was used.
-To download latest version, go to `Python web site <https://www.python.org/>`
+To download latest version, go to Python web site: <https://www.python.org/>
 
 1.2. Git
 
 Create an account on gitHub if you don't already have one: 
-`GitHub web site <https://github.com/>`
+GitHub web site: <https://github.com/>
 (It is not mandatory to install the application)
 
 1.3. Docker
 
-Finally, create an account on `DockerHub <https://hub.docker.com/>`
+Finally, create an account on DockerHub: <https://hub.docker.com/>
 
 2. Clone git repository
 ------------------------
