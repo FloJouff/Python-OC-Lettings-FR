@@ -43,4 +43,4 @@ Each time you commit to the main/master branch of the project on GitHub, the dep
 3. Post-deployment verification
 --------------------------------
 
-To check that deployment is proceeding correctly, you can make a small change to the project index page and ensure that this change is visible at the address specified by docker (for example: `<https://fj-oc-lettings.onrender.com>` ).
+To check that deployment is proceeding correctly, you can make a small change to the project index page and ensure that this change is visible at the address specified by docker (for example: <https://fj-oc-lettings.onrender.com>).

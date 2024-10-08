@@ -33,7 +33,7 @@ Check out the :doc:`project_on_docker` section for further information
 
 This project is deployed from Render.
 A render account is required.
-`Render web site <https://render.com/>` 
+Render web site <https://render.com/>
 
 
 3.3. CircleCI

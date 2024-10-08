@@ -1,9 +1,9 @@
-![Python](https://img.shields.io/badge/python-3.12.x-green.svg)
-![Django](https://img.shields.io/badge/django-3.0.x-green.svg)
+![Python](https://img.shields.io/badge/Python-3.12.x-green.svg)
+![Django](https://img.shields.io/badge/Django-3.0.x-green.svg)
 
 ![Pytest](https://img.shields.io/badge/Pytest-8.23.x-blue.svg)
-![Coverage](https://img.shields.io/badge/coverage-blue.svg)
-![flake8](https://img.shields.io/badge/Flake8 checked.x-brightgreen.svg)
+![Coverage](https://img.shields.io/badge/Coverage-blue.svg)
+![flake8](https://img.shields.io/badge/Flake8-brightgreen.svg)
 ![PEP8](https://img.shields.io/badge/code%20style-pep8-brightgreen.svg)
 
 ![Sentry](https://img.shields.io/badge/Sentry-2.14.x-orange.svg)
@@ -43,10 +43,10 @@ This site puts users in touch with each other to rent or let their property.
 
 At the root of your project, create a .env file to store your secret datas
 
-SENTRY_KEY='your link to your sentry page'
-SECRET_KEY = 'your django project secret key'
-DEBUG=False
-ALLOWED_HOSTS=localhost,0.0.0.0,127.0.0.1,'your own adress'.onrender.com
+- SENTRY_KEY='your link to your sentry page'
+- SECRET_KEY = 'your django project secret key'
+- DEBUG=False
+- ALLOWED_HOSTS=localhost,0.0.0.0,127.0.0.1,'your own adress'.onrender.com
 
 #### Run the site localy
 
