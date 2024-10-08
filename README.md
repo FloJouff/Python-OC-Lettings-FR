@@ -87,8 +87,9 @@ You can edit a html report:
 - Go to `http://localhost:8000/admin`
 - Log in as `admin`, password `Abc1234!`.
 
+## Deployment
 
-#### CI/CD Pipeline
+### CI/CD Pipeline
 
 - Addition of a CI/CD pipeline with [CircleCI](https://circleci.com)
 
@@ -97,15 +98,40 @@ You can edit a html report:
    3) *Dockerisation*: build and push a site image with [Docker](https://www.docker.com) 
    4) *Deploy*: commissioning the site using Render 
 
-#### Deploy with Render
+- circleci/config.yml configuration file.
+
+This file was downloaded with the github repository.
+
+- CircleCI environnment variables:
+
+You must specify the variables linked to Docker Hub:
+
+    - **DOCKER_LOGIN**: Your connexion email to your dockerHub account
+    - **DOCKER_PASSWORD**: Docker Hub password
+    - **DOCKER_USERNAME**: Docker Hub username
+
+The variables linked to Render use must be set in the CircleCI environment variables.
+
+   - **HOOK_RENDER**: go to settings - Deploy hook
+
+### Deploy with Render
 
   - [Render](https://render.com/)
 
-#### Setting up a surveillance service
+A render account is required.
+Render web site: <https://render.com/>
+
+In the **environment** section of the project, enter the environment variables present in the **.env** file:
+    - **SECRET_KEY** : Django secret key
+    - **SENTRY_DSN** : Sentry project URL
+    - **ALLOWED_HOSTS** : enter allowed host 
+    - **DEBUG** : select True or False
+
+## Setting up a surveillance service
 
  - Application monitoring and error tracking via [Sentry](https://sentry.io/welcome/)
 
-### Links :
+## Links :
 - **[CircleCI Pipeline](https://app.circleci.com/pipelines/circleci/F6BzmJXEFxjQt77WmLxhbF/AajyXrjczUGjJTfMopx3Le)**
 - **[Available docker image](https://hub.docker.com/r/flojouff/oc-lettings)**
 - **[Application deployed on Render](https://dashboard.render.com/web/srv-crpc6m68ii6s73cfjbj0/)**
