@@ -28,7 +28,7 @@ The variables linked to Render use must be set in the CircleCI environment varia
 
 This project is deployed from Render.
 A render account is required.
-Render web site <https://render.com/>
+Render web site: <https://render.com/>
 
 In the **environment** section of the project, enter the environment variables present in the **.env** file:
     - **SECRET_KEY** : Django secret key

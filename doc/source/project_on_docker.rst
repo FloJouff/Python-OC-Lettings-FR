@@ -11,7 +11,7 @@ The Dockerfile will be loaded automatically from the GitHub repo
 
 You must download and install docker:
 
-Docker <https://docs.docker.com/get-started/get-docker/>
+Docker: <https://docs.docker.com/get-started/get-docker/>
 
 Then you can build your docker image:
 

@@ -53,12 +53,13 @@ jobs:
       - docker/check
       - run:
           name: Build docker image
-          command: docker build -t ${DOCKER_USERNAME}/oc-lettings:latest .
+          command: docker build -t ${DOCKER_USERNAME}/oc-lettings:latest -t ${DOCKER_USERNAME}/oc-lettings:${CIRCLE_SHA1} .
       - run:
           name: Push docker image
           command: |
               echo ${DOCKER_PASSWORD} | docker login -u ${DOCKER_LOGIN} -p ${DOCKER_PASSWORD}
               docker push ${DOCKER_USERNAME}/oc-lettings:latest 
+              docker push ${DOCKER_USERNAME}/oc-lettings:${CIRCLE_SHA1}
 
   deploy:
     docker:
@@ -69,7 +70,7 @@ jobs:
           command: |
             curl -X POST ${HOOK_RENDER} \
               -H "Content-Type: application/json" \
-              -d '{"imageTag": "docker.io/${DOCKERHUB_USERNAME}/oc-lettings:latest", "clearCache": false}'
+              -d '{"imageTag": "docker.io/${DOCKERHUB_USERNAME}/oc-lettings:${CIRCLE_SHA1}", "clearCache": false}'
 
 workflows:
   version: 2

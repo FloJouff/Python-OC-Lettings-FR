@@ -9,7 +9,7 @@ Use
 
     (.env)$ python manage.py runserver
 
-- Go to http://localhost:8000 in your browser for local acces.
+- Go to <http://localhost:8000> in your browser for local acces.
 
 2. Access to the administration interface
 -----------------------------------------
