@@ -32,7 +32,11 @@ extensions = [
     'sphinx.ext.viewcode',
     ]
 
-
+autodoc_modules = {
+    "lettings": "lettings",
+    "profiles": "profiles",
+    "oc_lettings_site": "oc_lettings_site",
+}
 templates_path = ['_templates']
 exclude_patterns = []
 

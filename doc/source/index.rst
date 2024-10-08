@@ -8,18 +8,18 @@ OC-Lettings documentation
 
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
    :caption: Contents:
    
-   intro.rst
-   install.rst
-   configuration.rst
-   application.rst
-   data_models.rst
-   views.rst
-   project_cicd.rst
-   project_on_docker.rst
-   surveillance.rst
+   intro <intro>
+   install <install>
+   configuration <configuration>
+   application <application>
+   data_models <data_models>
+   views <views>
+   project_cicd <project_cicd>
+   project_on_docker <project_on_docker>
+   surveillance <surveillance>
    
 Indices and tables
 ==================
